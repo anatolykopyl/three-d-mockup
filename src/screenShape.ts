@@ -1,4 +1,4 @@
-import { Shape, ShapeGeometry } from 'three';
+import { Shape, ShapeGeometry } from "three";
 
 export default function roundedPlane(width: number, height: number, radius: number) {
   const x = 0; const y = 0;

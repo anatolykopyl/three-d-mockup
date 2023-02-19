@@ -8,7 +8,8 @@ module.exports = {
   ],
   plugins: [
     "solid",
-    "simple-import-sort"
+    "simple-import-sort",
+    "@typescript-eslint"
   ],
   ignorePatterns: [
     "dist/**/*",
@@ -16,5 +17,9 @@ module.exports = {
   rules: {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "semi": "error",
+    "quotes": ["error", "double"],
   }
 };

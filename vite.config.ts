@@ -1,5 +1,6 @@
-import { defineConfig } from 'vite';
+/* eslint-env node */
 import { resolve } from 'path'
+import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
 
 export default defineConfig({

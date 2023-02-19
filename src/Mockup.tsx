@@ -1,10 +1,8 @@
-import { createSignal, onMount } from 'solid-js';
-import { Mesh, MeshLambertMaterial, Object3D, Scene, TextureLoader, Vector3, WebGLRenderer } from 'three';
+import { createSignal, onMount } from "solid-js";
+import { Vector3,WebGLRenderer } from "three";
 
-import style from './assets/style.css?inline'
-import PhoneModel from './PhoneModel';
-import screenShape from './screenShape';
-import { initThreeD, recomputeUVs } from './utils';
+import style from "./assets/style.css?inline";
+import { initThreeD } from "./initThreeD";
 
 export default function(props: {
   screen: string;
@@ -17,60 +15,33 @@ export default function(props: {
   };
   levitate: boolean;
 }) {
-  const [pos, setPos] = createSignal({x: 0, y: 0});
+  const [mousePos, setMousePos] = createSignal(new Vector3(0, 0, props.distance));
+  const [idle, setIdle] = createSignal(true);
+
   let container: HTMLDivElement | undefined;
-  let phone: PhoneModel;
+  let update: (dt: number, target: Vector3, idle: boolean) => void;
+  let renderer: WebGLRenderer;
 
-  onMount(() => {
-    if (!container) {
-      throw new Error('Container not mounted')
-    }
+  onMount(async () => {
+    container = container as HTMLDivElement;
 
-    const { scene, renderer, render } = initThreeD(container.clientWidth, container.clientHeight)
-    renderer.setPixelRatio(window.devicePixelRatio)
-
-    phone = new PhoneModel(new Vector3(props.rotation.x, props.rotation.y, props.rotation.z), props.bodyColor);
-    scene.add(phone)
-
-    const screenScale = 6;
-    const screenWidth = screenScale * 9; 
-    const screenHeight = screenScale * 19.3;
-    const screenRadius = 8;
-
-    const geometry = screenShape(screenWidth, screenHeight, screenRadius);
-
-
-    const loader = new TextureLoader();
-    const texture = loader.load(props.screen);
-
-    texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
-
-    const screenMaterial = new MeshLambertMaterial({ map: texture });
-
-    const screenMesh = new Mesh(geometry, screenMaterial);
-
-    recomputeUVs(screenMesh);
-
-    screenMesh.translateZ(3.6);
-    screenMesh.geometry.center();
-    phone.add(screenMesh);
+    const phoneRotationVector = new Vector3(props.rotation.x, props.rotation.y, props.rotation.z);
+    ({ renderer, update } = await initThreeD(container.clientWidth, container.clientHeight, phoneRotationVector, props.bodyColor, props.screen));
+    renderer.setPixelRatio(window.devicePixelRatio);
 
     container.appendChild(renderer.domElement);
+  });
 
-    let previousTime = 0;
-    function animate(currentTime: number) {
-      currentTime *= 0.001;
-      const deltaTime = currentTime - previousTime;
-      previousTime = currentTime;
+  let previousTime = 0;
+  function animate(currentTime: number) {
+    currentTime *= 0.001;
+    const deltaTime = currentTime - previousTime;
+    previousTime = currentTime;
 
-      requestAnimationFrame(animate);
-      const target = new Vector3(pos().x, -pos().y, props.distance);
-      phone.animation(deltaTime, target);
-
-      render();
-    }
-    animate(0);
-  })
+    requestAnimationFrame(animate);
+    update?.(deltaTime, mousePos(), idle());
+  }
+  animate(0);
 
   function handleMouseMove(event: MouseEvent) {
     if (!container) {
@@ -78,18 +49,19 @@ export default function(props: {
     }
 
     const rect = container.getBoundingClientRect();
-    setPos({
-      x: event.clientX - rect.left - rect.width / 2,
-      y: event.clientY - rect.top - rect.height / 2
-    });
+    setMousePos(new Vector3(
+      event.clientX - rect.left - rect.width / 2,
+      - (event.clientY - rect.top - rect.height / 2),
+      props.distance
+    ));
   }
 
   function handleMouseEnter() {
-    phone.lookingAtSomething = true;
+    setIdle(false);
   }
 
   function handleMouseLeave() {
-    phone.lookingAtSomething = false;
+    setIdle(true);
   }
 
   return <>
@@ -104,5 +76,5 @@ export default function(props: {
         "animation-name": props.levitate ? "levitate" : "none"
       }}
     />
-  </>
+  </>;
 }

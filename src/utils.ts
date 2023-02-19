@@ -1,5 +1,8 @@
-import type { BufferAttribute, Mesh } from 'three';
-import { Box3, DirectionalLight, PerspectiveCamera, Scene,Vector3, WebGLRenderer } from 'three';
+import type { BufferAttribute } from "three";
+import { Box3, Mesh, MeshLambertMaterial, Object3D, Vector3 } from "three";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+
+const objLoader = new OBJLoader();
 
 export const recomputeUVs = (mesh: Mesh) => {
   const box = new Box3().setFromObject(mesh);
@@ -18,33 +21,23 @@ export const recomputeUVs = (mesh: Mesh) => {
   }
 };
 
-const initLight = () => {
-  const light = new DirectionalLight();
-  light.position.set(0, 0, 300);
-  return light;
-}
+export const loadObj = (obj: string, color: string): Promise<Object3D> => {
+  return new Promise((resolve) => {
+    objLoader.load(obj, (body) => {
+      const bodyGroup = new Object3D();
+      body.traverse((child) => {
+        if (child instanceof Mesh) {
+          child.material = new MeshLambertMaterial({ color });
+          child.geometry.center();
+          const mesh = new Mesh(child.geometry, child.material);
+          const scale = 8.6;
+          mesh.rotateX(Math.PI / 2);
+          mesh.scale.set(-scale, scale, scale);
+          bodyGroup.add(mesh);
+        }
+      });
 
-const initCamera = (ratio: number) => {
-  const camera = new PerspectiveCamera(
-    45,
-    ratio
-  );
-  camera.position.set(0, 0, 200);
-  return camera;
-}
-
-export const initThreeD = (width: number, height: number) => {
-  const renderer = new WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setSize(width, height)
-
-  const scene = new Scene();
-  const light = initLight()
-  scene.add(light)
-  const camera = initCamera(width/height)
-
-  return {
-    scene,
-    renderer,
-    render: () => renderer.render(scene, camera),
-  };
-}
+      resolve(bodyGroup);
+    });
+  });
+};
