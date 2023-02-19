@@ -1,0 +1,33 @@
+{
+  "name": "three-d-mockup",
+  "version": "0.0.0",
+  "description": "",
+  "author": "Anatoly Kopyl <hi@kopyl.dev>",
+  "main": "./src/Mockup.tsx",
+  "scripts": {
+    "dev": "vite build --watch & vitepress dev docs",
+    "build": "vite build",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
+  },
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "@types/node": "^18.14.0",
+    "@types/three": "^0.149.0",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
+    "eslint": "^8.34.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-solid": "^0.9.4",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.1",
+    "vite-plugin-solid": "^2.5.0",
+    "vitepress": "^1.0.0-alpha.46"
+  },
+  "dependencies": {
+    "solid-element": "^1.6.3",
+    "solid-js": "^1.6.10",
+    "three": "^0.149.0"
+  }
+}
