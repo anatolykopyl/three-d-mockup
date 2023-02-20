@@ -8,7 +8,7 @@ customElement(
     screen: null,
     bodyColor: "white",
     distance: 500,
-    rotation: {x: 250, y: 170, z: 500},
+    rotation: { x: 250, y: 170, z: 500 },
     levitate: true
   },
   (props) => {

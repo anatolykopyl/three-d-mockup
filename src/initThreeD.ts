@@ -1,8 +1,10 @@
-import { DirectionalLight, Mesh, MeshLambertMaterial, PerspectiveCamera, Scene,TextureLoader,Vector3, WebGLRenderer } from "three";
+import { DirectionalLight, Mesh, MeshLambertMaterial, PerspectiveCamera, Scene, TextureLoader, Vector3, VideoTexture,WebGLRenderer } from "three";
 
 import PhoneModel from "./PhoneModel";
 import screenShape from "./screenShape";
 import { recomputeUVs } from "./utils";
+
+
 
 const initLight = () => {
   const light = new DirectionalLight();
@@ -29,17 +31,27 @@ const initPhone = async (rotation: Vector3, bodyColor: string, screen: string) =
 
   const geometry = screenShape(screenWidth, screenHeight, screenRadius);
 
-  const loader = new TextureLoader();
-  const texture = loader.load(screen);
+  let texture;
+  if (screen.endsWith(".mp4")) {
+    const videoElement = document.createElement("video");
+    videoElement.src = screen;
+    videoElement.muted = true;
+    videoElement.loop = true;
+    videoElement.play();
+    texture = new VideoTexture(videoElement);
+  } else {
+    const loader = new TextureLoader();
+    texture = loader.load(screen);
+  }
 
   const screenMaterial = new MeshLambertMaterial({ map: texture });
-
   const screenMesh = new Mesh(geometry, screenMaterial);
 
   recomputeUVs(screenMesh);
 
   screenMesh.translateZ(3.6);
   screenMesh.geometry.center();
+  
   phone.add(screenMesh);
 
   return phone;

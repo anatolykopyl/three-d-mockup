@@ -1,4 +1,3 @@
-import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
@@ -16,17 +15,16 @@ export default defineConfig({
         icon: 'github',
         link: 'https://github.com/anatolykopyl/three-d-mockup'
       }
-    ]
+    ],
+    editLink: {
+      pattern: 'https://github.com/anatolykopyl/three-d-mockup/edit/master/docs/:path'
+    }
   },
-  // vite: {
-  //   plugins: [
-  //     vue({
-  //       template: {
-  //         compilerOptions: {
-  //           isCustomElement: (tag) => tag.includes('-')
-  //         }
-  //       }
-  //     })
-  //   ]
-  // }
+  vue: {
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag) => tag === 'three-d-mockup'
+      }
+    }
+  }
 })

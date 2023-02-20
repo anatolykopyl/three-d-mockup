@@ -1,5 +1,5 @@
 import { createSignal, onMount } from "solid-js";
-import { Vector3,WebGLRenderer } from "three";
+import { Vector3, WebGLRenderer } from "three";
 
 import style from "./assets/style.css?inline";
 import { initThreeD } from "./initThreeD";

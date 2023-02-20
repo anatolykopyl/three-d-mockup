@@ -1,7 +1,7 @@
 {
   "name": "three-d-mockup",
   "version": "0.0.0",
-  "description": "",
+  "description": "A custom element 3d mockup of a floating phone.",
   "author": "Anatoly Kopyl <hi@kopyl.dev>",
   "main": "./src/Mockup.tsx",
   "scripts": {
