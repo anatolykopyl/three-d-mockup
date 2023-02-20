@@ -1,4 +1,4 @@
-import { DirectionalLight, Mesh, MeshLambertMaterial, PerspectiveCamera, Scene, TextureLoader, Vector3, VideoTexture,WebGLRenderer } from "three";
+import { DirectionalLight, Mesh, MeshLambertMaterial, PerspectiveCamera, Scene, TextureLoader, Vector3, VideoTexture, WebGLRenderer } from "three";
 
 import PhoneModel from "./PhoneModel";
 import screenShape from "./screenShape";
