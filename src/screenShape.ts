@@ -1,4 +1,5 @@
-import { Shape, ShapeGeometry } from "three";
+import { Shape } from "three/src/extras/core/Shape";
+import { ShapeGeometry } from "three/src/geometries/ShapeGeometry";
 
 export default function roundedPlane(width: number, height: number, radius: number) {
   const x = 0; const y = 0;

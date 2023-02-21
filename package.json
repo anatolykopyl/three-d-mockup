@@ -3,7 +3,20 @@
   "version": "0.0.0",
   "description": "A custom element 3d mockup of a floating phone.",
   "author": "Anatoly Kopyl <hi@kopyl.dev>",
-  "main": "./src/Mockup.tsx",
+  "browser": {
+    "./sfc": "src/Mockup.tsx"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/three-d-mockup.umd.js",
+  "module": "./dist/three-d-mockup.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/three-d-mockup.mjs",
+      "require": "./dist/three-d-mockup.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite build --watch & vitepress dev docs",
     "build": "vite build",

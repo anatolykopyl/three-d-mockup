@@ -15,6 +15,6 @@ export default defineConfig({
       entry: resolve(__dirname, "src/index.tsx"),
       name: "3D Mockup",
       fileName: "three-d-mockup",
-    },
+    }
   },
 });

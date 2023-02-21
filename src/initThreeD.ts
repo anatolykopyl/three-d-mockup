@@ -1,10 +1,16 @@
-import { DirectionalLight, Mesh, MeshLambertMaterial, PerspectiveCamera, Scene, TextureLoader, Vector3, VideoTexture, WebGLRenderer } from "three";
+import { PerspectiveCamera } from "three/src/cameras/PerspectiveCamera";
+import { DirectionalLight } from "three/src/lights/DirectionalLight";
+import { TextureLoader } from "three/src/loaders/TextureLoader";
+import { MeshLambertMaterial } from "three/src/materials/MeshLambertMaterial";
+import { Vector3 } from "three/src/math/Vector3";
+import { Mesh } from "three/src/objects/Mesh";
+import { WebGLRenderer } from "three/src/renderers/WebGLRenderer";
+import { Scene } from "three/src/scenes/Scene";
+import { VideoTexture } from "three/src/textures/VideoTexture";
 
 import PhoneModel from "./PhoneModel";
 import screenShape from "./screenShape";
 import { recomputeUVs } from "./utils";
-
-
 
 const initLight = () => {
   const light = new DirectionalLight();

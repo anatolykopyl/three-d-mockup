@@ -1,4 +1,6 @@
-import { Group, Object3D, Vector3 } from "three";
+import { Object3D } from "three/src/core/Object3D";
+import { Vector3 } from "three/src/math/Vector3";
+import { Group } from "three/src/objects/Group";
 
 import { loadObj } from "./utils";
 
