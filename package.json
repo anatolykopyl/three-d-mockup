@@ -9,14 +9,15 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/three-d-mockup.umd.js",
-  "module": "./dist/three-d-mockup.mjs",
+  "main": "./dist/three-d-mockup.umd.cjs",
+  "module": "./dist/three-d-mockup.js",
   "exports": {
     ".": {
-      "import": "./dist/three-d-mockup.mjs",
-      "require": "./dist/three-d-mockup.umd.js"
+      "import": "./dist/three-d-mockup.js",
+      "require": "./dist/three-d-mockup.umd.cjs"
     }
   },
+  "type": "module",
   "scripts": {
     "dev": "vite build --watch & vitepress dev docs",
     "build": "vite build",

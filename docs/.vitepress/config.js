@@ -6,7 +6,7 @@ export default defineConfig({
   base: '/three-d-mockup/',
   lang: 'en-US',
   lastUpdated: true,
-  themeConfig: {  
+  themeConfig: {
     footer: {
       message: 'Released under the GPL-3.0 license.',
     },
