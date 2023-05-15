@@ -43,6 +43,6 @@
   "dependencies": {
     "solid-element": "^1.6.3",
     "solid-js": "^1.6.10",
-    "three": "^0.149.2"
+    "three": "^0.152.2"
   }
 }
