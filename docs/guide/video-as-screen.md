@@ -1,9 +1,10 @@
 # Video as screen
 
 <script setup>
-import { ref } from 'vue';
-import '../../dist/three-d-mockup';
+import { ref, onMounted } from 'vue';
 import screenVideo from '../assets/screen.mp4';
+
+onMounted(() => import('../../dist/three-d-mockup'));
 </script>
 
 <three-d-mockup

@@ -3,8 +3,10 @@ layout: home
 ---
 
 <script setup>
-import '../dist/three-d-mockup';
+import { onMounted } from 'vue';
 import screenImage from './assets/screen.png';
+
+onMounted(() => import('../dist/three-d-mockup'));
 </script>
 
 <main>
@@ -31,7 +33,7 @@ import screenImage from './assets/screen.png';
       href="https://github.com/anatolykopyl/three-d-mockup" 
       class="buttons__button buttons__button--secondary"
     >
-      Github
+      GitHub
     </a>
   </div>
 </main>
@@ -68,18 +70,18 @@ main {
 .buttons__button {
   display: inline-block;
   padding: 8px 16px;
-  border-radius: 4px;
-  background-color: var(--vp-c-brand);
-  border: 1px solid var(--vp-c-brand);
-  color: var(--vp-c-white);
+  border-radius: 20px;
+  background-color: var(--vp-button-brand-bg);
+  border: 1px solid var(--vp-button-brand-border);
+  color: var(--vp-button-brand-text);
   text-decoration: none;
   font-size: 16px;
   margin: 0 8px;
 }
 
 .buttons__button--secondary {
-  background-color: var(--vp-c-gray-light-4);
-  color: var(--vp-c-black);
-  border: 1px solid var(--vp-c-divider-light-2);
+  background-color: var(--vp-button-alt-bg);
+  border: 1px solid var(--vp-button-alt-border);
+  color: var(--vp-button-alt-text);
 }
 </style>

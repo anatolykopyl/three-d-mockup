@@ -7,6 +7,19 @@ export default defineConfig({
   lang: 'en-US',
   lastUpdated: true,
   themeConfig: {
+    nav: [
+      { text: 'Home', link: '/' },
+      { text: 'Guide', link: '/guide/' },
+    ],
+    sidebar: [
+      {
+        text: 'Getting Started',
+        items: [
+          { text: 'Introduction', link: '/guide/' },
+          { text: 'Video as screen', link: '/guide/video-as-screen' },
+        ]
+      },
+    ],
     footer: {
       message: 'Released under the GPL-3.0 license.',
     },
