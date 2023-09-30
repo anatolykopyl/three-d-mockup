@@ -29,7 +29,7 @@
   "devDependencies": {
     "@rollup/plugin-alias": "^5.0.0",
     "@types/node": "^18.14.0",
-    "@types/three": "^0.152.0",
+    "@types/three": "^0.156.0",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
     "@yushijinhun/three-minifier-rollup": "^0.4.0",
@@ -45,6 +45,6 @@
   "dependencies": {
     "solid-element": "^1.6.3",
     "solid-js": "^1.6.10",
-    "three": "^0.152.2"
+    "three": "^0.157.0"
   }
 }

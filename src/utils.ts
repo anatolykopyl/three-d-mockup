@@ -3,6 +3,7 @@ import type { BufferAttribute } from "three/src/core/BufferAttribute";
 import { Object3D } from "three/src/core/Object3D";
 import { MeshLambertMaterial } from "three/src/materials/MeshLambertMaterial";
 import { Box3 } from "three/src/math/Box3";
+import { Color } from "three/src/math/Color";
 import { Vector3 } from "three/src/math/Vector3";
 import { Mesh } from "three/src/objects/Mesh";
 
@@ -34,7 +35,7 @@ export const loadObj = (obj: string, color: string): Promise<Object3D> => {
         if (!childAsMesh.material || !childAsMesh.geometry) {
           return;
         }
-        childAsMesh.material = new MeshLambertMaterial({ color });
+        childAsMesh.material = new MeshLambertMaterial({ color: new Color(color).convertSRGBToLinear() });
         childAsMesh.geometry.center();
         const mesh = new Mesh(childAsMesh.geometry, childAsMesh.material);
         const scale = 8.6;
