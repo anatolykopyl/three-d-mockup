@@ -7,6 +7,7 @@ import { Mesh } from "three/src/objects/Mesh";
 import { WebGLRenderer } from "three/src/renderers/WebGLRenderer";
 import { Scene } from "three/src/scenes/Scene";
 import { VideoTexture } from "three/src/textures/VideoTexture";
+import { SRGBColorSpace } from 'three/src/constants'
 
 import PhoneModel from "./PhoneModel";
 import screenShape from "./screenShape";
@@ -48,6 +49,7 @@ const initPhone = async (rotation: Vector3, bodyColor: string, screen: string) =
   } else {
     const loader = new TextureLoader();
     texture = loader.load(screen);
+    texture.colorSpace = SRGBColorSpace
   }
 
   const screenMaterial = new MeshLambertMaterial({ map: texture });

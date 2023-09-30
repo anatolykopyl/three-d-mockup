@@ -27,10 +27,12 @@
   },
   "license": "GPL-3.0",
   "devDependencies": {
+    "@rollup/plugin-alias": "^5.0.0",
     "@types/node": "^18.14.0",
-    "@types/three": "^0.149.0",
+    "@types/three": "^0.152.0",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
+    "@yushijinhun/three-minifier-rollup": "^0.4.0",
     "eslint": "^8.34.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-solid": "^0.9.4",
